@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Trading Examples | TradeFlow Academy</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f7f9;
+      color: #172033;
+    }
+
+    /* HEADER */
+    header {
+      background: #061321;
+      color: white;
+      border-bottom: 1px solid #17304a;
+      padding: 18px 5%;
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo {
+      width: 48px;
+      height: 48px;
+      border: 2px solid #20df8a;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #20df8a;
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    .brand-name {
+      font-size: 21px;
+      font-weight: bold;
+    }
+
+    .brand-name span {
+      color: #20df8a;
+    }
+
+    .tagline {
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: #9db0c2;
+      margin-top: 3px;
+    }
+
+    /* NAV */
+    nav {
+      background: #081a2b;
+      border-bottom: 1px solid #17304a;
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 10px 15px;
+      gap: 5px;
+    }
+
+    nav a {
+      color: #dce5ed;
+      text-decoration: none;
+      padding: 11px 15px;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: 0.2s;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: #20df8a;
+      background: #102b3e;
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 500px;
+      background:
+        radial-gradient(circle at 85% 30%, rgba(32,223,138,0.20), transparent 25%),
+        linear-gradient(135deg, #061321, #092238 60%, #061321);
+      color: white;
+    }
+
+    .hero-content {
+      max-width: 1200px;
+      min-height: 500px;
+      margin: auto;
+      padding: 80px 5%;
+      display: flex;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-text {
+      max-width: 650px;
+    }
+
+    .eyebrow {
+      color: #20df8a;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 6vw, 70px);
+      line-height: 1.05;
+      margin: 0 0 20px;
+    }
+
+    .hero h1 span {
+      color: #20df8a;
+    }
+
+    .hero-subtitle {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      color: #b9c9d8;
+      line-height: 1.7;
+      font-size: 16px;
+      max-width: 620px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 13px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+
+    .button-green {
+      background: #20df8a;
+      color: #061321;
+    }
+
+    .button-green:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(32,223,138,0.25);
+    }
+
+    .button-outline {
+      border: 1px solid #20df8a;
+      color: #20df8a;
+    }
+
+    .button-outline:hover {
+      background: #20df8a;
+      color: #061321;
+    }
+
+    /* CHART DECORATION */
+    .chart {
+      position: absolute;
+      right: 4%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 420px;
+      height: 270px;
+      opacity: 0.75;
+    }
+
+    .chart::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 50px 50px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+    }
+
+    .candle {
+      position: absolute;
+      width: 10px;
+      border-radius: 2px;
+      background: #20df8a;
+      box-shadow: 0 0 12px rgba(32,223,138,0.5);
+    }
+
+    .candle::before {
+      content: "";
+      position: absolute;
+      width: 2px;
+      height: 30px;
+      background: #20df8a;
+      left: 4px;
+      top: -15px;
+    }
+
+    .candle::after {
+      content: "";
+      position: absolute;
+      width: 2px;
+      height: 30px;
+      background: #20df8a;
+      left: 4px;
+      bottom: -15px;
+    }
+
+    .c1 { left: 35px; top: 170px; height: 45px; }
+    .c2 { left: 75px; top: 145px; height: 55px; }
+    .c3 { left: 115px; top: 155px; height: 35px; }
+    .c4 { left: 155px; top: 110px; height: 60px; }
+    .c5 { left: 195px; top: 125px; height: 45px; }
+    .c6 { left: 235px; top: 85px; height: 70px; }
+    .c7 { left: 275px; top: 100px; height: 45px; }
+    .c8 { left: 315px; top: 55px; height: 75px; }
+    .c9 { left: 355px; top: 75px; height: 50px; }
+
+    .chart-line {
+      position: absolute;
+      width: 320px;
+      height: 3px;
+      background: #20df8a;
+      transform: rotate(-20deg);
+      top: 155px;
+      left: 45px;
+      box-shadow: 0 0 15px rgba(32,223,138,0.7);
+    }
+
+    /* QUICK LINKS */
+    .quick-links {
+      background: white;
+      padding: 25px 5%;
+      border-bottom: 1px solid #e5e9ee;
+    }
+
+    .quick-grid {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .quick-link {
+      padding: 17px;
+      border: 1px solid #e0e6eb;
+      border-radius: 10px;
+      text-decoration: none;
+      color: #172033;
+      font-weight: bold;
+      text-align: center;
+      transition: 0.2s;
+    }
+
+    .quick-link:hover {
+      border-color: #20df8a;
+      color: #159b61;
+      transform: translateY(-2px);
+    }
+
+    /* SECTIONS */
+    .section {
+      padding: 75px 5%;
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .section-head {
+      max-width: 700px;
+      margin-bottom: 35px;
+    }
+
+    .section-number {
+      color: #20b978;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .section h2 {
+      font-size: 38px;
+      margin: 10px 0 15px;
+    }
+
+    .section-head p {
+      color: #607080;
+      line-height: 1.7;
+    }
+
+    /* CARDS */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #e2e7ec;
+      border-radius: 14px;
+      padding: 25px;
+      box-shadow: 0 6px 20px rgba(12,30,45,0.05);
+    }
+
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(32,223,138,0.12);
+      color: #159b61;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      margin-bottom: 18px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 19px;
+    }
+
+    .card p {
+      color: #647382;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    /* DARK SECTIONS */
+    .dark-section {
+      background:
+        radial-gradient(circle at 90% 20%, rgba(32,223,138,0.12), transparent 25%),
+        #061321;
+      color: white;
+      padding: 75px 5%;
+    }
+
+    .dark-inner {
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .dark-section .section-head p {
+      color: #aebdca;
+    }
+
+    .dark-section h2 {
+      font-size: 38px;
+      margin: 10px 0 15px;
+    }
+
+    /* CHART EXAMPLES */
+    .example-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+    }
+
+    .example-box {
+      background: #0a1c2d;
+      border: 1px solid #17344a;
+      border-radius: 16px;
+      padding: 22px;
+    }
+
+    .example-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .example-title h3 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .badge {
+      color: #20df8a;
+      background: rgba(32,223,138,0.10);
+      border: 1px solid rgba(32,223,138,0.25);
+      padding: 6px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    .mini-chart {
+      height: 210px;
+      border: 1px solid #1d3b51;
+      border-radius: 10px;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 42px 42px;
+      margin-bottom: 18px;
+    }
+
+    .mini-candle {
+      position: absolute;
+      width: 9px;
+      background: #20df8a;
+      border-radius: 2px;
+    }
+
+    .mini-candle.red {
+      background: #e66b7a;
+    }
+
+    .mini-candle::before,
+    .mini-candle::after {
+      content: "";
+      position: absolute;
+      width: 2px;
+      height: 20px;
+      left: 3.5px;
+      background: inherit;
+    }
+
+    .mini-candle::before {
+      top: -12px;
+    }
+
+    .mini-candle::after {
+      bottom: -12px;
+    }
+
+    .bull1 { left: 35px; top: 145px; height: 30px; }
+    .bull2 { left: 75px; top: 120px; height: 40px; }
+    .bull3 { left: 115px; top: 135px; height: 25px; }
+    .bull4 { left: 155px; top: 90px; height: 50px; }
+    .bull5 { left: 195px; top: 105px; height: 35px; }
+    .bull6 { left: 235px; top: 65px; height: 55px; }
+    .bull7 { left: 275px; top: 80px; height: 35px; }
+
+    .bear1 { left: 35px; top: 55px; height: 35px; }
+    .bear2 { left: 75px; top: 80px; height: 40px; }
+    .bear3 { left: 115px; top: 65px; height: 30px; }
+    .bear4 { left: 155px; top: 105px; height: 50px; }
+    .bear5 { left: 195px; top: 95px; height: 40px; }
+    .bear6 { left: 235px; top: 135px; height: 45px; }
+    .bear7 { left: 275px; top: 125px; height: 35px; }
+
+    .label {
+      position: absolute;
+      background: #061321;
+      border: 1px solid #20df8a;
+      color: #20df8a;
+      padding: 5px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    .label.hh { left: 225px; top: 25px; }
+    .label.hl { left: 145px; top: 155px; }
+    .label.lh { left: 150px; top: 50px; }
+    .label.ll { left: 225px; top: 170px; }
+
+    .example-box p {
+      color: #aebdca;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    /* TRADE PLAN */
+    .plan-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .plan-card {
+      background: white;
+      border-radius: 14px;
+      padding: 25px;
+      border: 1px solid #e2e7ec;
+    }
+
+    .plan-number {
+      color: #20df8a;
+      background: #061321;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      margin-bottom: 16px;
+    }
+
+    .plan-card h3 {
+      margin: 0 0 10px;
+    }
+
+    .plan-card p {
+      color: #647382;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    /* SCREENSHOT EXAMPLES */
+    .screenshots {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+    }
+
+    .screenshot-card {
+      background: white;
+      border: 1px solid #e2e7ec;
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 6px 20px rgba(12,30,45,0.05);
+    }
+
+    .screenshot-card h3 {
+      margin: 5px 0 8px;
+    }
+
+    .screenshot-card p {
+      color: #647382;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .screenshot {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      border: 1px solid #e1e6ea;
+      margin-top: 15px;
+    }
+
+    /* LEARNING BOX */
+    .learning-box {
+      max-width: 1000px;
+      margin: auto;
+      padding: 45px;
+      border-radius: 18px;
+      background:
+        radial-gradient(circle at 85% 20%, rgba(32,223,138,0.15), transparent 25%),
+        #061321;
+      color: white;
+      text-align: center;
+      border: 1px solid #17344a;
+    }
+
+    .green-line {
+      width: 60px;
+      height: 4px;
+      background: #20df8a;
+      margin: 0 auto 20px;
+      border-radius: 5px;
+    }
+
+    .learning-box h2 {
+      margin: 0 0 12px;
+      font-size: 32px;
+    }
+
+    .learning-box p {
+      color: #b9c9d8;
+      line-height: 1.7;
+      max-width: 650px;
+      margin: auto;
+    }
+
+    /* NOTICE */
+    .notice {
+      padding: 60px 5%;
+      background: #f5f7f9;
+    }
+
+    .notice-box {
+      max-width: 1000px;
+      margin: auto;
+      background: #eafaf3;
+      border: 1px solid #b8efd5;
+      border-radius: 14px;
+      padding: 25px;
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+    }
+
+    .notice-icon {
+      min-width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #20df8a;
+      color: #061321;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    .notice h3 {
+      margin: 0 0 8px;
+    }
+
+    .notice p {
+      margin: 0;
+      color: #53616d;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #061321;
+      color: #b9c9d8;
+      text-align: center;
+      padding: 35px 20px;
+      border-top: 1px solid #17304a;
+    }
+
+    footer strong {
+      color: white;
+    }
+
+    footer span {
+      color: #20df8a;
+    }
+
+    footer a {
+      color: #b9c9d8;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+
+    footer a:hover {
+      color: #20df8a;
+    }
+
+    /* MOBILE */
+    @media (max-width: 900px) {
+      .chart {
+        opacity: 0.25;
+        right: -80px;
+      }
+
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .quick-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .example-grid,
+      .screenshots {
+        grid-template-columns: 1fr;
+      }
+
+      .plan-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .header-inner {
+        justify-content: center;
+      }
+
+      .hero-content {
+        padding: 65px 6%;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+      }
+
+      .hero-subtitle {
+        font-size: 19px;
+      }
+
+      .chart {
+        display: none;
+      }
+
+      .quick-grid,
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .section,
+      .dark-section {
+        padding: 55px 6%;
+      }
+
+      .section h2,
+      .dark-section h2 {
+        font-size: 30px;
+      }
+
+      .learning-box {
+        padding: 35px 22px;
+      }
+
+      .notice-box {
+        flex-direction: column;
+      }
+
+      nav a {
+        font-size: 13px;
+        padding: 9px 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+
+    <div class="brand">
+      <div class="logo">↗</div>
+
+      <div>
+        <div class="brand-name">
+          TradeFlow <span>Academy</span>
+        </div>
+
+        <div class="tagline">
+          FREE FOREX LEARNING
+        </div>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="nav-inner">
+
+    <a href="index.html">Home</a>
+
+    <a href="journal.html">Journal</a>
+
+    <a href="information.html">Information</a>
+
+    <a href="examples.html" class="active">Examples</a>
+
+    <a href="about.html">About</a>
+
+  </div>
+</nav>
+
+
+<!-- HERO -->
+<section class="hero">
+
+  <div class="hero-content">
+
+    <div class="hero-text">
+
+      <div class="eyebrow">
+        CHART EXAMPLES • LEARN BY SEEING
+      </div>
+
+      <h1>
+        See the setup.
+        <span>Understand the move.</span>
+      </h1>
+
+      <div class="hero-subtitle">
+        Forex Chart Examples for Beginners
+      </div>
+
+      <p>
+        Study market structure, bullish and bearish movement,
+        supply and demand, and simple trade planning through
+        practical examples.
+      </p>
+
+      <div class="buttons">
+
+        <a href="#structure" class="button button-green">
+          Start Learning →
+        </a>
+
+        <a href="information.html" class="button button-outline">
+          Back to Information
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- DECORATIVE CHART -->
+  <div class="chart">
+
+    <div class="chart-line"></div>
+
+    <div class="candle c1"></div>
+    <div class="candle c2"></div>
+    <div class="candle c3"></div>
+    <div class="candle c4"></div>
+    <div class="candle c5"></div>
+    <div class="candle c6"></div>
+    <div class="candle c7"></div>
+    <div class="candle c8"></div>
+    <div class="candle c9"></div>
+
+  </div>
+
+</section>
+
+
+<!-- QUICK LINKS -->
+<section class="quick-links">
+
+  <div class="quick-grid">
+
+    <a href="#structure" class="quick-link">
+      Market Structure
+    </a>
+
+    <a href="#bullish" class="quick-link">
+      Bullish Example
+    </a>
+
+    <a href="#bearish" class="quick-link">
+      Bearish Example
+    </a>
+
+    <a href="#planning" class="quick-link">
+      Trade Planning
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- MARKET STRUCTURE -->
+<section class="section" id="structure">
+
+  <div class="section-inner">
+
+    <div class="section-head">
+
+      <div class="section-number">
+        01 • MARKET STRUCTURE
+      </div>
+
+      <h2>
+        Learn to read the market
+      </h2>
+
+      <p>
+        Market structure helps you understand how price is moving.
+        Start by identifying higher highs, higher lows, lower highs
+        and lower lows.
+      </p>
+
+    </div>
+
+
+    <div class="cards">
+
+      <div class="card">
+
+        <div class="card-icon">
+          HH
+        </div>
+
+        <h3>Higher High</h3>
+
+        <p>
+          Price moves above a previous high.
+          This can show that buyers are pushing price higher.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="card-icon">
+          HL
+        </div>
+
+        <h3>Higher Low</h3>
+
+        <p>
+          Price pulls back but stays above the previous low.
+          This can support a bullish structure.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="card-icon">
+          LH
+        </div>
+
+        <h3>Lower High</h3>
+
+        <p>
+          Price moves up but fails to reach the previous high.
+          This can appear in a bearish structure.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="card-icon">
+          LL
+        </div>
+
+        <h3>Lower Low</h3>
+
+        <p>
+          Price moves below a previous low.
+          This can show that sellers are pushing price lower.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- BULLISH / BEARISH EXAMPLES -->
+<section class="dark-section">
+
+  <div class="dark-inner">
+
+    <div class="section-head">
+
+      <div class="section-number">
+        02 • STRUCTURE EXAMPLES
+      </div>
+
+      <h2>
+        Bullish vs Bearish Structure
+      </h2>
+
+      <p>
+        These simple diagrams are learning examples.
+        Real charts can be more complicated and should always
+        be analysed in context.
+      </p>
+
+    </div>
+
+
+    <div class="example-grid">
+
+
+      <!-- BULLISH -->
+      <div class="example-box" id="bullish">
+
+        <div class="example-title">
+
+          <h3>Bullish Example</h3>
+
+          <div class="badge">
+            HH + HL
+          </div>
+
+        </div>
+
+
+        <div class="mini-chart">
+
+          <div class="mini-candle bull1"></div>
+          <div class="mini-candle bull2"></div>
+          <div class="mini-candle bull3"></div>
+          <div class="mini-candle bull4"></div>
+          <div class="mini-candle bull5"></div>
+          <div class="mini-candle bull6"></div>
+          <div class="mini-candle bull7"></div>
+
+          <div class="label hh">
+            HH
+          </div>
+
+          <div class="label hl">
+            HL
+          </div>
+
+        </div>
+
+
+        <p>
+          Price is making higher highs and higher lows.
+          This is an example of bullish market structure.
+        </p>
+
+      </div>
+
+
+      <!-- BEARISH -->
+      <div class="example-box" id="bearish">
+
+        <div class="example-title">
+
+          <h3>Bearish Example</h3>
+
+          <div class="badge">
+            LH + LL
+          </div>
+
+        </div>
+
+
+        <div class="mini-chart">
+
+          <div class="mini-candle red bear1"></div>
+          <div class="mini-candle red bear2"></div>
+          <div class="mini-candle red bear3"></div>
+          <div class="mini-candle red bear4"></div>
+          <div class="mini-candle red bear5"></div>
+          <div class="mini-candle red bear6"></div>
+          <div class="mini-candle red bear7"></div>
+
+          <div class="label lh">
+            LH
+          </div>
+
+          <div class="label ll">
+            LL
+          </div>
+
+        </div>
+
+
+        <p>
+          Price is making lower highs and lower lows.
+          This is an example of bearish market structure.
+        </p>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- TRADE PLANNING -->
+<section class="section" id="planning">
+
+  <div class="section-inner">
+
+    <div class="section-head">
+
+      <div class="section-number">
+        03 • TRADE PLANNING
+      </div>
+
+      <h2>
+        Think before you enter
+      </h2>
+
+      <p>
+        A setup is more than simply seeing price move.
+        Build a plan before entering a trade.
+      </p>
+
+    </div>
+
+
+    <div class="plan-grid">
+
+      <div class="plan-card">
+
+        <div class="plan-number">
+          01
+        </div>
+
+        <h3>Analyse</h3>
+
+        <p>
+          Look at the higher timeframe and identify the
+          overall market structure.
+        </p>
+
+      </div>
+
+
+      <div class="plan-card">
+
+        <div class="plan-number">
+          02
+        </div>
+
+        <h3>Find Your Area</h3>
+
+        <p>
+          Look for important areas such as supply,
+          demand or previous market structure.
+        </p>
+
+      </div>
+
+
+      <div class="plan-card">
+
+        <div class="plan-number">
+          03
+        </div>
+
+        <h3>Wait for Confirmation</h3>
+
+        <p>
+          Do not rush into a trade. Wait for your planned
+          conditions to appear.
+        </p>
+
+      </div>
+
+
+      <div class="plan-card">
+
+        <div class="plan-number">
+          04
+        </div>
+
+        <h3>Set Your Risk</h3>
+
+        <p>
+          Know where your stop loss will be and how much
+          you are prepared to risk before entering.
+        </p>
+
+      </div>
+
+
+      <div class="plan-card">
+
+        <div class="plan-number">
+          05
+        </div>
+
+        <h3>Plan the Exit</h3>
+
+        <p>
+          Decide where you would take profit or exit if
+          the setup no longer matches your plan.
+        </p>
+
+      </div>
+
+
+      <div class="plan-card">
+
+        <div class="plan-number">
+          06
+        </div>
+
+        <h3>Record the Trade</h3>
+
+        <p>
+          Use your trading journal to record what happened
+          and what you learned.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- SCREENSHOT EXAMPLES -->
+<section class="dark-section">
+
+  <div class="dark-inner">
+
+    <div class="section-head">
+
+      <div class="section-number">
+        04 • PRACTICAL EXAMPLES
+      </div>
+
+      <h2>
+        Study the charts
+      </h2>
+
+      <p>
+        Use the screenshots below to practise identifying
+        structure, areas and possible trade planning.
+      </p>
+
+    </div>
+
+
+    <div class="screenshots">
+
+
+      <div class="screenshot-card">
+
+        <h3>Example 1</h3>
+
+        <p>
+          Trading chart example and analysis.
+        </p>
+
+        <img
+          src="screenshot1.jpg"
+          alt="Trading chart example 1"
+          class="screenshot"
+        >
+
+      </div>
+
+
+      <div class="screenshot-card">
+
+        <h3>Example 2</h3>
+
+        <p>
+          Trading chart example and analysis.
+        </p>
+
+        <img
+          src="screenshot2.jpg"
+          alt="Trading chart example 2"
+          class="screenshot"
+        >
+
+      </div>
+
+
+      <div class="screenshot-card">
+
+        <h3>Example 3</h3>
+
+        <p>
+          Trading chart example and analysis.
+        </p>
+
+        <img
+          src="screenshot3.jpg"
+          alt="Trading chart example 3"
+          class="screenshot"
+        >
+
+      </div>
+
+
+      <div class="screenshot-card">
+
+        <h3>Example 4</h3>
+
+        <p>
+          Trading chart example and analysis.
+        </p>
+
+        <img
+          src="screenshot4.jpg"
+          alt="Trading chart example 4"
+          class="screenshot"
+        >
+
+      </div>
+
+
+      <div class="screenshot-card">
+
+        <h3>Example 5</h3>
+
+        <p>
+          Trading chart example and analysis.
+        </p>
+
+        <img
+          src="screenshot5.jpg"
+          alt="Trading chart example 5"
+          class="screenshot"
+        >
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- LEARNING MESSAGE -->
+<section class="section">
+
+  <div class="learning-box">
+
+    <div class="green-line"></div>
+
+    <h2>
+      Learn. Practise. Review. Improve.
+    </h2>
+
+    <p>
+      The goal of chart examples is not to copy a trade.
+      It is to train your eyes to recognise structure,
+      understand your plan and make better decisions through practice.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- NOTICE -->
+<section class="notice">
+
+  <div class="notice-box">
+
+    <div class="notice-icon">
+      !
+    </div>
+
+    <div>
+
+      <h3>
+        Important Notice
+      </h3>
+
+      <p>
+        TradeFlow Academy is an educational project.
+        The examples on this page are for learning purposes only
+        and are not trading signals or financial advice.
+        Forex trading involves significant risk, and past market
+        behaviour does not guarantee future results.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+  <p>
+    <strong>TradeFlow <span>Academy</span></strong>
+  </p>
+
+  <p>
+    Learn. Analyse. Trade. Improve.
+  </p>
+
+  <p>
+    <a href="index.html">Home</a> |
+    <a href="journal.html">Journal</a> |
+    <a href="information.html">Information</a> |
+    <a href="examples.html">Examples</a> |
+    <a href="about.html">About</a>
+  </p>
+
+  <p>
+    © 2026 TradeFlow Academy
+  </p>
+
+</footer>
+
+</body>
+</html>
