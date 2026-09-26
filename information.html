@@ -1,0 +1,2153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Trading Information | TradeFlow Academy</title>
+
+  <meta
+    name="description"
+    content="TradeFlow Academy - Learn forex market structure, timeframes, supply and demand, risk management and trading psychology."
+  >
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f7f9;
+      color: #172033;
+    }
+
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    header {
+      background: #061321;
+      color: white;
+      padding: 18px 6%;
+      border-bottom: 1px solid #17304a;
+    }
+
+    .top {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo {
+      width: 48px;
+      height: 48px;
+      border: 2px solid #20df8a;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #20df8a;
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    .brand-name {
+      font-size: 25px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .tradeflow {
+      color: white;
+    }
+
+    .academy {
+      color: #20df8a;
+    }
+
+    .tagline {
+      color: #aab8c7;
+      font-size: 12px;
+      margin-top: 5px;
+      letter-spacing: 1px;
+    }
+
+
+    /* =========================
+       NAVIGATION
+    ========================= */
+
+    nav {
+      background: #081a2b;
+      padding: 12px 6%;
+      border-bottom: 1px solid #17304a;
+    }
+
+    nav .nav-inner {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    nav a {
+      color: #dce5ed;
+      text-decoration: none;
+      padding: 10px 15px;
+      border-radius: 7px;
+      font-size: 14px;
+      transition: 0.2s;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: #20df8a;
+      background: #102b3e;
+    }
+
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+
+      background:
+        radial-gradient(
+          circle at 85% 30%,
+          rgba(32,223,138,0.20),
+          transparent 25%
+        ),
+        linear-gradient(
+          135deg,
+          #061321,
+          #092238 60%,
+          #061321
+        );
+
+      color: white;
+
+      min-height: 480px;
+
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-content {
+      width: 88%;
+      max-width: 1200px;
+      margin: auto;
+      padding: 70px 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      color: #20df8a;
+      font-weight: bold;
+      letter-spacing: 2px;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 7vw, 68px);
+      line-height: 1.02;
+      margin: 0;
+      max-width: 800px;
+    }
+
+    .hero h1 .white {
+      color: white;
+    }
+
+    .hero h1 .green {
+      color: #20df8a;
+    }
+
+    .hero h2 {
+      font-size: clamp(20px, 3vw, 30px);
+      margin: 22px 0 12px;
+    }
+
+    .hero p {
+      max-width: 650px;
+      color: #c6d2dc;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+
+    /* HERO BUTTONS */
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-block;
+      text-decoration: none;
+      padding: 14px 24px;
+      border-radius: 30px;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+
+    .button-green {
+      background: #20df8a;
+      color: #061321;
+    }
+
+    .button-green:hover {
+      background: #39f09b;
+      transform: translateY(-2px);
+    }
+
+    .button-outline {
+      border: 1px solid #20df8a;
+      color: #20df8a;
+    }
+
+    .button-outline:hover {
+      background: #20df8a;
+      color: #061321;
+    }
+
+
+    /* =========================
+       CHART DECORATION
+    ========================= */
+
+    .chart {
+      position: absolute;
+      right: -30px;
+      bottom: 35px;
+      width: 48%;
+      height: 260px;
+      opacity: 0.35;
+    }
+
+    .chart-line {
+      position: absolute;
+      width: 100%;
+      height: 4px;
+      background: #20df8a;
+      transform: rotate(-17deg);
+      box-shadow: 0 0 15px #20df8a;
+    }
+
+    .chart-line.one {
+      top: 160px;
+      transform: rotate(-25deg);
+    }
+
+    .chart-line.two {
+      top: 100px;
+      transform: rotate(-15deg);
+    }
+
+    .chart-line.three {
+      top: 45px;
+      transform: rotate(-8deg);
+    }
+
+    .candle {
+      position: absolute;
+      width: 9px;
+      background: #20df8a;
+      bottom: 0;
+      border-radius: 2px;
+    }
+
+    .c1 { left: 5%; height: 70px; }
+    .c2 { left: 15%; height: 110px; }
+    .c3 { left: 25%; height: 80px; }
+    .c4 { left: 35%; height: 150px; }
+    .c5 { left: 45%; height: 115px; }
+    .c6 { left: 55%; height: 185px; }
+    .c7 { left: 65%; height: 150px; }
+    .c8 { left: 75%; height: 220px; }
+    .c9 { left: 85%; height: 190px; }
+
+
+    /* =========================
+       QUICK NAVIGATION
+    ========================= */
+
+    .quick-links {
+      background: white;
+      padding: 35px 6%;
+      border-bottom: 1px solid #e1e6ea;
+    }
+
+    .quick-grid {
+      max-width: 1200px;
+      margin: auto;
+
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+
+      gap: 15px;
+    }
+
+    .quick-link {
+      text-decoration: none;
+      color: #172033;
+
+      background: #f5f7f9;
+
+      border: 1px solid #e1e6ea;
+
+      padding: 18px;
+
+      border-radius: 12px;
+
+      transition: 0.2s;
+    }
+
+    .quick-link:hover {
+      transform: translateY(-4px);
+      border-color: #20df8a;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    .quick-link span {
+      color: #13b873;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .quick-link strong {
+      display: block;
+      margin-top: 6px;
+    }
+
+
+    /* =========================
+       NORMAL SECTIONS
+    ========================= */
+
+    .section {
+      padding: 70px 6%;
+      background: #f5f7f9;
+    }
+
+    .section-inner {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section-head {
+      max-width: 760px;
+      margin-bottom: 35px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(30px, 5vw, 44px);
+      margin: 0 0 15px;
+      color: #172033;
+    }
+
+    .section-head p {
+      color: #647181;
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+
+    /* =========================
+       DARK SECTIONS
+    ========================= */
+
+    .dark-section {
+      padding: 70px 6%;
+
+      background:
+        radial-gradient(
+          circle at 85% 20%,
+          rgba(32,223,138,0.12),
+          transparent 25%
+        ),
+        linear-gradient(
+          135deg,
+          #071827,
+          #102b40
+        );
+
+      color: white;
+    }
+
+    .dark-inner {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .dark-section .section-head h2 {
+      color: white;
+    }
+
+    .dark-section .section-head p {
+      color: #c9d4dd;
+    }
+
+
+    /* =========================
+       CARDS
+    ========================= */
+
+    .cards {
+      max-width: 1200px;
+      margin: 30px auto 0;
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 22px;
+    }
+
+    .card {
+      background: white;
+
+      border-radius: 16px;
+
+      padding: 28px;
+
+      border: 1px solid #e1e6ea;
+
+      transition: 0.25s;
+
+      box-shadow:
+        0 5px 20px rgba(0,0,0,0.04);
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+
+      border-color: #20df8a;
+
+      box-shadow:
+        0 15px 35px rgba(0,0,0,0.10);
+    }
+
+    .dark-section .card {
+      background: #0b2032;
+      border: 1px solid #214057;
+      color: white;
+    }
+
+    .dark-section .card:hover {
+      border-color: #20df8a;
+      box-shadow:
+        0 15px 35px rgba(0,0,0,0.25);
+    }
+
+    .tf {
+      width: 58px;
+      height: 58px;
+
+      border-radius: 14px;
+
+      background: #e6fff4;
+
+      color: #13b873;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-weight: bold;
+      font-size: 16px;
+
+      margin-bottom: 20px;
+    }
+
+    .dark-section .tf {
+      background: #102f3d;
+      color: #20df8a;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+    }
+
+    .card p {
+      margin: 0;
+
+      color: #647181;
+
+      line-height: 1.6;
+    }
+
+    .dark-section .card p {
+      color: #b9c7d2;
+    }
+
+
+    /* =========================
+       STRATEGY LIST
+    ========================= */
+
+    .strategy-list {
+      max-width: 1200px;
+      margin: 30px auto 0;
+
+      display: grid;
+
+      gap: 14px;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+
+      gap: 20px;
+
+      padding: 22px;
+
+      background: white;
+
+      border-radius: 14px;
+
+      border: 1px solid #e1e6ea;
+
+      transition: 0.2s;
+    }
+
+    .step:hover {
+      transform: translateX(5px);
+      border-color: #20df8a;
+    }
+
+    .dark-section .step {
+      background: #0b2032;
+      border-color: #214057;
+    }
+
+    .step > span {
+      min-width: 55px;
+      height: 55px;
+
+      border-radius: 12px;
+
+      background: #e6fff4;
+
+      color: #13b873;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-weight: bold;
+    }
+
+    .dark-section .step > span {
+      background: #102f3d;
+      color: #20df8a;
+    }
+
+    .step h3 {
+      margin: 3px 0 7px;
+      font-size: 19px;
+    }
+
+    .step p {
+      margin: 0;
+
+      color: #647181;
+
+      line-height: 1.6;
+    }
+
+    .dark-section .step h3 {
+      color: white;
+    }
+
+    .dark-section .step p {
+      color: #b9c7d2;
+    }
+
+
+    /* =========================
+       IMPORTANT NOTICE
+    ========================= */
+
+    .notice {
+      padding: 40px 6%;
+      background: white;
+    }
+
+    .notice-box {
+      max-width: 1200px;
+      margin: auto;
+
+      padding: 28px;
+
+      border-radius: 16px;
+
+      background: #eafff5;
+
+      border: 1px solid #b8f3d7;
+
+      display: flex;
+
+      gap: 20px;
+
+      align-items: flex-start;
+    }
+
+    .notice-icon {
+      font-size: 30px;
+    }
+
+    .notice h3 {
+      margin: 0 0 8px;
+      color: #12663f;
+    }
+
+    .notice p {
+      margin: 6px 0;
+
+      color: #355747;
+
+      line-height: 1.6;
+    }
+
+
+    /* =========================
+       LEARNING MESSAGE
+    ========================= */
+
+    .learning-box {
+      max-width: 1200px;
+      margin: auto;
+
+      padding: 45px;
+
+      border-radius: 18px;
+
+      color: white;
+
+      background:
+        radial-gradient(
+          circle at 85% 50%,
+          rgba(32,223,138,0.18),
+          transparent 30%
+        ),
+        linear-gradient(
+          135deg,
+          #071827,
+          #102b40
+        );
+    }
+
+    .learning-box h2 {
+      font-size: 34px;
+      margin-top: 0;
+    }
+
+    .learning-box p {
+      max-width: 700px;
+
+      color: #c9d4dd;
+
+      line-height: 1.7;
+
+      font-size: 16px;
+    }
+
+    .green-line {
+      width: 70px;
+      height: 4px;
+
+      background: #20df8a;
+
+      margin: 12px 0 20px;
+
+      border-radius: 5px;
+    }
+
+    .quote {
+      margin-top: 25px;
+
+      color: #20df8a;
+
+      font-size: 20px;
+
+      font-weight: bold;
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      background: #061321;
+
+      color: white;
+
+      padding: 40px 6% 25px;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: auto;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      gap: 30px;
+
+      flex-wrap: wrap;
+    }
+
+    .footer-brand {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .footer-links a {
+      color: #d5dfe7;
+
+      text-decoration: none;
+
+      margin-right: 18px;
+
+      line-height: 2.5;
+    }
+
+    .footer-links a:hover {
+      color: #20df8a;
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+
+      margin: 25px auto 0;
+
+      padding-top: 20px;
+
+      border-top: 1px solid #1b3449;
+
+      text-align: center;
+
+      color: #8494a3;
+
+      font-size: 13px;
+    }
+
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 800px) {
+
+      .top {
+        justify-content: center;
+      }
+
+      .quick-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .cards {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .chart {
+        opacity: 0.15;
+        width: 80%;
+      }
+
+      .hero-content {
+        padding: 55px 0;
+      }
+
+    }
+
+
+    @media (max-width: 520px) {
+
+      .brand-name {
+        font-size: 21px;
+      }
+
+      .logo {
+        width: 42px;
+        height: 42px;
+      }
+
+      .hero h1 {
+        font-size: 43px;
+      }
+
+      .quick-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .section,
+      .dark-section {
+        padding: 55px 6%;
+      }
+
+      .learning-box {
+        padding: 30px 24px;
+      }
+
+      .notice-box {
+        display: block;
+      }
+
+      .notice-icon {
+        margin-bottom: 12px;
+      }
+
+      nav a {
+        font-size: 13px;
+        padding: 8px 10px;
+      }
+
+      .step {
+        gap: 14px;
+      }
+
+      .step > span {
+        min-width: 48px;
+        height: 48px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+  <div class="top">
+
+    <div class="brand">
+
+      <div class="logo">↗</div>
+
+      <div>
+
+        <div class="brand-name">
+
+          <span class="tradeflow">TradeFlow</span>
+          <span class="academy"> Academy</span>
+
+        </div>
+
+        <div class="tagline">
+          FREE FOREX LEARNING
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<nav>
+
+  <div class="nav-inner">
+
+    <a href="index.html">
+      Home
+    </a>
+
+    <a href="journal.html">
+      Journal
+    </a>
+
+    <a href="information.html" class="active">
+      Information
+    </a>
+
+    <a href="examples.html">
+      Examples
+    </a>
+
+    <a href="about.html">
+      About
+    </a>
+
+  </div>
+
+</nav>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+  <div class="hero-content">
+
+    <div class="eyebrow">
+      TRADING INFORMATION • BUILD YOUR KNOWLEDGE
+    </div>
+
+    <h1>
+
+      <span class="white">
+        Understand the
+      </span>
+
+      <span class="green">
+        Market.
+      </span>
+
+      <br>
+
+      <span class="white">
+        Build your
+      </span>
+
+      <span class="green">
+        Process.
+      </span>
+
+    </h1>
+
+    <h2>
+      Learn Forex Step by Step
+    </h2>
+
+    <p>
+
+      Explore market structure, timeframes,
+      supply and demand, risk management,
+      trading psychology and the basic process
+      behind a structured trading approach.
+
+    </p>
+
+    <div class="hero-buttons">
+
+      <a
+        href="#market-structure"
+        class="button button-green"
+      >
+        Start Learning →
+      </a>
+
+      <a
+        href="examples.html"
+        class="button button-outline"
+      >
+        View Examples
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <!-- CHART -->
+
+  <div class="chart">
+
+    <div class="candle c1"></div>
+    <div class="candle c2"></div>
+    <div class="candle c3"></div>
+    <div class="candle c4"></div>
+    <div class="candle c5"></div>
+    <div class="candle c6"></div>
+    <div class="candle c7"></div>
+    <div class="candle c8"></div>
+    <div class="candle c9"></div>
+
+    <div class="chart-line one"></div>
+    <div class="chart-line two"></div>
+    <div class="chart-line three"></div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     QUICK LINKS
+========================= -->
+
+<section class="quick-links">
+
+  <div class="quick-grid">
+
+    <a
+      href="#market-structure"
+      class="quick-link"
+    >
+
+      <span>
+        01
+      </span>
+
+      <strong>
+        Market Structure
+      </strong>
+
+    </a>
+
+
+    <a
+      href="#timeframes"
+      class="quick-link"
+    >
+
+      <span>
+        02
+      </span>
+
+      <strong>
+        Timeframes
+      </strong>
+
+    </a>
+
+
+    <a
+      href="#supply-demand"
+      class="quick-link"
+    >
+
+      <span>
+        03
+      </span>
+
+      <strong>
+        Supply & Demand
+      </strong>
+
+    </a>
+
+
+    <a
+      href="#risk"
+      class="quick-link"
+    >
+
+      <span>
+        04
+      </span>
+
+      <strong>
+        Risk Management
+      </strong>
+
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     01 MARKET STRUCTURE
+========================= -->
+
+<section
+  class="section"
+  id="market-structure"
+>
+
+  <div class="section-inner">
+
+    <div class="section-head">
+
+      <div class="eyebrow">
+        01 — MARKET STRUCTURE
+      </div>
+
+      <h2>
+        Understand price movement.
+      </h2>
+
+      <p>
+
+        Market structure helps traders study
+        how price is moving and identify possible
+        changes in direction.
+
+        Understanding highs and lows gives you
+        a foundation for reading a chart.
+
+      </p>
+
+    </div>
+
+
+    <div class="cards">
+
+
+      <article class="card">
+
+        <div class="tf">
+          HH
+        </div>
+
+        <h3>
+          Higher High
+        </h3>
+
+        <p>
+
+          Price makes a high above the previous high.
+          This can be part of an upward market structure.
+
+        </p>
+
+      </article>
+
+
+      <article class="card">
+
+        <div class="tf">
+          HL
+        </div>
+
+        <h3>
+          Higher Low
+        </h3>
+
+        <p>
+
+          Price pulls back but stays above the
+          previous low. This can show continued
+          upward structure.
+
+        </p>
+
+      </article>
+
+
+      <article class="card">
+
+        <div class="tf">
+          LH
+        </div>
+
+        <h3>
+          Lower High
+        </h3>
+
+        <p>
+
+          Price makes a high below the previous high.
+          This can be part of a downward structure.
+
+        </p>
+
+      </article>
+
+
+      <article class="card">
+
+        <div class="tf">
+          LL
+        </div>
+
+        <h3>
+          Lower Low
+        </h3>
+
+        <p>
+
+          Price makes a low below the previous low.
+          This can show continued downward movement.
+
+        </p>
+
+      </article>
+
+
+      <article class="card">
+
+        <div class="tf">
+          BOS
+        </div>
+
+        <h3>
+          Break of Structure
+        </h3>
+
+        <p>
+
+          Price breaks an important previous high
+          or low. Traders can study this for possible
+          continuation or change.
+
+        </p>
+
+      </article>
+
+
+      <article class="card">
+
+        <div class="tf">
+          CH
+        </div>
+
+        <h3>
+          Change in Structure
+        </h3>
+
+        <p>
+
+          A change in the way price forms highs
+          and lows can suggest that the current
+          movement may be changing.
+
+        </p>
+
+      </article>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     02 TIMEFRAMES
+========================= -->
+
+<section
+  class="dark-section"
+  id="timeframes"
+>
+
+  <div class="dark-inner">
+
+    <div class="section-head">
+
+      <div class="eyebrow">
+        02 — TIMEFRAMES
+      </div>
+
+      <h2>
+        Give each timeframe a job.
+      </h2>
+
+      <p>
+
+        Looking at different timeframes can help
+        you understand both the bigger picture
+        and possible entry areas.
+
+      </p>
+
+    </div>
+
+
+    <div class="strategy-list">
+
+
+      <div class="step">
+
+        <span>
+          D1
+        </span>
+
+        <div>
+
+          <h3>
+            Daily
+          </h3>
+
+          <p>
+
+            Study the bigger market picture,
+            major trends and important levels.
+
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="step">
+
+        <span>
+          H4
+        </span>
+
+        <div>
+
+          <h3>
+            4 Hour
+          </h3>
+
+          <p>
+
+            Study market structure and important
+            areas inside the bigger picture.
+
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="step">
+
+        <span>
+          M15
+        </span>
+
+        <div>
+
+          <h3>
+            15 Minute
+          </h3>
+
+          <p>
+
+            Look for possible entries,
+            confirmations and smaller price movements.
+
+          </p>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     03 SUPPLY & DEMAND
+========================= -->
+
+<section
+  class="section"
+  id="supply-demand"
+>
+
+  <div class="section-inner">
+
+    <div class="section-head">
+
+      <div class="eyebrow">
+        03 — SUPPLY & DEMAND
+      </div>
+
+      <h2>
+        Study important price areas.
+      </h2>
+
+      <p>
+
+        Supply and demand areas can help traders
+        identify places where strong buying or
+        selling previously occurred.
+
+      </p>
+
+    </div>
+
+
+    <div class="cards">
+
+
+      <article class="card">
+
+        <div class="tf">
+          D
+        </div>
+
+        <h3>
+          Demand
+        </h3>
+
+        <p>
+
+          A demand area is a price region where
+          buying pressure previously pushed
+          price higher.
+
+        </p>
+
+      </article>
+
+
+      <article class="card">
+
+        <div class="tf">
+          S
+        </div>
+
+        <h3>
+          Supply
+        </h3>
+
+        <p>
+
+          A supply area is a price region where
+          selling pressure previously pushed
+          price lower.
+
+        </p>
+
+      </article>
+
+
+      <article class="card">
+
+        <div class="tf">
+          ZONE
+        </div>
+
+        <h3>
+          Mark the Area
+        </h3>
+
+        <p>
+
+          Focus on the important price area
+          rather than trying to predict the
+          exact pip where price will react.
+
+        </p>
+
+      </article>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     04 RISK MANAGEMENT
+========================= -->
+
+<section
+  class="dark-section"
+  id="risk"
+>
+
+  <div class="dark-inner">
+
+    <div class="section-head">
+
+      <div class="eyebrow">
+        04 — RISK MANAGEMENT
+      </div>
+
+      <h2>
+        Protect your trading account.
+      </h2>
+
+      <p>
+
+        A trading strategy is only part of the
+        process. Risk management helps control
+        how much you can lose when a trade
+        does not work.
+
+      </p>
+
+    </div>
+
+
+    <div class="cards">
+
+
+      <article class="card">
+
+        <div class="tf">
+          01
+        </div>
+
+        <h3>
+          Know Your Risk
+        </h3>
+
+        <p>
+
+          Decide how much you are willing to
+          risk before entering the trade.
+
+        </p>
+
+      </article>
+
+
+      <article class="card">
+
+        <div class="tf">
+          02
+        </div>
+
+        <h3>
+          Use a Stop Loss
+        </h3>
+
+        <p>
+
+          A stop loss can help limit the loss
+          if price moves against your trade.
+
+        </p>
+
+      </article>
+
+
+      <article class="card">
+
+        <div class="tf">
+          03
+        </div>
+
+        <h3>
+          Respect Your Plan
+        </h3>
+
+        <p>
+
+          Avoid increasing your risk just because
+          a trade is moving against you.
+
+        </p>
+
+      </article>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     05 TRADING PSYCHOLOGY
+========================= -->
+
+<section class="section">
+
+  <div class="section-inner">
+
+    <div class="section-head">
+
+      <div class="eyebrow">
+        05 — TRADING PSYCHOLOGY
+      </div>
+
+      <h2>
+        Control the process, not the market.
+      </h2>
+
+      <p>
+
+        The market cannot be controlled.
+        Your decisions, preparation and
+        discipline can be controlled.
+
+      </p>
+
+    </div>
+
+
+    <div class="strategy-list">
+
+
+      <div class="step">
+
+        <span>
+          01
+        </span>
+
+        <div>
+
+          <h3>
+            Patience
+          </h3>
+
+          <p>
+
+            Wait for your setup instead of entering
+            because you are afraid of missing a move.
+
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="step">
+
+        <span>
+          02
+        </span>
+
+        <div>
+
+          <h3>
+            Discipline
+          </h3>
+
+          <p>
+
+            Follow your trading rules even when
+            emotions make you want to change them.
+
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="step">
+
+        <span>
+          03
+        </span>
+
+        <div>
+
+          <h3>
+            Accept Losses
+          </h3>
+
+          <p>
+
+            A losing trade is part of trading.
+            Focus on following your process
+            instead of chasing losses.
+
+          </p>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     06 TRADE PROCESS
+========================= -->
+
+<section class="dark-section">
+
+  <div class="dark-inner">
+
+    <div class="section-head">
+
+      <div class="eyebrow">
+        06 — THE TRADE PROCESS
+      </div>
+
+      <h2>
+        Build a repeatable routine.
+      </h2>
+
+      <p>
+
+        A simple process can help you make
+        decisions consistently instead of
+        trading randomly.
+
+      </p>
+
+    </div>
+
+
+    <div class="cards">
+
+
+      <article class="card">
+
+        <div class="tf">
+          01
+        </div>
+
+        <h3>
+          Analyse
+        </h3>
+
+        <p>
+
+          Start with the bigger timeframe and
+          understand the current market structure.
+
+        </p>
+
+      </article>
+
+
+      <article class="card">
+
+        <div class="tf">
+          02
+        </div>
+
+        <h3>
+          Mark
+        </h3>
+
+        <p>
+
+          Mark important levels, supply and
+          demand areas and possible zones
+          of interest.
+
+        </p>
+
+      </article>
+
+
+      <article class="card">
+
+        <div class="tf">
+          03
+        </div>
+
+        <h3>
+          Confirm
+        </h3>
+
+        <p>
+
+          Wait for your entry conditions instead
+          of entering simply because price
+          reaches an area.
+
+        </p>
+
+      </article>
+
+
+      <article class="card">
+
+        <div class="tf">
+          04
+        </div>
+
+        <h3>
+          Manage
+        </h3>
+
+        <p>
+
+          Set your stop loss, target and risk
+          before taking the trade.
+
+        </p>
+
+      </article>
+
+
+      <article class="card">
+
+        <div class="tf">
+          05
+        </div>
+
+        <h3>
+          Record
+        </h3>
+
+        <p>
+
+          Write down what happened in your
+          trading journal. Record both wins
+          and losses.
+
+        </p>
+
+      </article>
+
+
+      <article class="card">
+
+        <div class="tf">
+          06
+        </div>
+
+        <h3>
+          Review
+        </h3>
+
+        <p>
+
+          Look back at your trades and identify
+          what you can improve on your next setup.
+
+        </p>
+
+      </article>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     07 BEFORE YOU TRADE
+========================= -->
+
+<section class="section">
+
+  <div class="section-inner">
+
+    <div class="section-head">
+
+      <div class="eyebrow">
+        07 — BEFORE YOU TRADE
+      </div>
+
+      <h2>
+        Ask yourself these questions.
+      </h2>
+
+      <p>
+
+        A quick checklist can help you slow down
+        and think before placing a trade.
+
+      </p>
+
+    </div>
+
+
+    <div class="strategy-list">
+
+
+      <div class="step">
+
+        <span>
+          ✓
+        </span>
+
+        <div>
+
+          <h3>
+            What is the market structure?
+          </h3>
+
+          <p>
+
+            Is price making higher highs and
+            higher lows, or lower highs and
+            lower lows?
+
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="step">
+
+        <span>
+          ✓
+        </span>
+
+        <div>
+
+          <h3>
+            Where is my area?
+          </h3>
+
+          <p>
+
+            Have I identified an important level
+            or supply and demand area?
+
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="step">
+
+        <span>
+          ✓
+        </span>
+
+        <div>
+
+          <h3>
+            What is my risk?
+          </h3>
+
+          <p>
+
+            Do I know where my stop loss is and
+            how much I am risking before entering?
+
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="step">
+
+        <span>
+          ✓
+        </span>
+
+        <div>
+
+          <h3>
+            Is there confirmation?
+          </h3>
+
+          <p>
+
+            Am I following my setup, or am I
+            entering because of emotion?
+
+          </p>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     LEARNING MESSAGE
+========================= -->
+
+<section class="section">
+
+  <div class="learning-box">
+
+    <div class="eyebrow">
+      TRADEFLOW ACADEMY
+    </div>
+
+    <h2>
+      Learn. Practise. Review. Improve.
+    </h2>
+
+    <div class="green-line"></div>
+
+    <p>
+
+      Trading is a skill that takes time to develop.
+      Use the information here together with your
+      chart examples and trading journal to build
+      your own process.
+
+    </p>
+
+    <p>
+
+      You do not need to understand everything
+      in one day. Learn one concept, practise it,
+      review your results and keep improving.
+
+    </p>
+
+    <div class="quote">
+      Small steps build better traders.
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     IMPORTANT NOTICE
+========================= -->
+
+<section class="notice">
+
+  <div class="notice-box">
+
+    <div class="notice-icon">
+      🛡️
+    </div>
+
+    <div>
+
+      <h3>
+        Important Notice
+      </h3>
+
+      <p>
+
+        TradeFlow Academy is an educational website.
+        The information provided is for learning purposes
+        and is not financial advice or a promise of profit.
+
+      </p>
+
+      <p>
+
+        Forex trading involves significant risk.
+        Learn first, practise carefully and never risk
+        money you cannot afford to lose.
+
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+  <div class="footer-inner">
+
+    <div>
+
+      <div class="footer-brand">
+
+        <span class="tradeflow">
+          TradeFlow
+        </span>
+
+        <span class="academy">
+          Academy
+        </span>
+
+      </div>
+
+      <p>
+        Free Forex Learning
+      </p>
+
+    </div>
+
+
+    <div class="footer-links">
+
+      <a href="index.html">
+        Home
+      </a>
+
+      <a href="journal.html">
+        Journal
+      </a>
+
+      <a href="information.html">
+        Information
+      </a>
+
+      <a href="examples.html">
+        Examples
+      </a>
+
+      <a href="about.html">
+        About
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <div class="footer-bottom">
+
+    © 2026 TradeFlow Academy
+    • Free Forex Learning
+    • Chart Analysis
+    • Trading Education
+
+  </div>
+
+</footer>
+
+
+</body>
+
+</html>
