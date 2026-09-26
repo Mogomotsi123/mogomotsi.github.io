@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TradeFlow Academy - Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f5f5f5;
+      color: #222;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .screenshot {
+      width: 100%;
+      max-width: 800px;
+      display: block;
+      margin: 20px auto;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Trading Examples</h1>
+
+    <p>
+      Here are some examples from TradeFlow Academy showing
+      market analysis, chart setups and trading ideas.
+    </p>
+
+    <img src="screenshot1.png" alt="Trading example 1" class="screenshot">
+    <img src="screenshot2.png" alt="Trading example 2" class="screenshot">
+    <img src="screenshot3.png" alt="Trading example 3" class="screenshot">
+
+  </div>
+</body>
+</html>
