@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trading Journal | TradeFlow Academy</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="hero">
+
+  <nav>
+    <a class="logo" href="index.html">TradeFlow<span>Academy</span></a>
+
+    <div class="navlinks">
+      <a href="index.html">Home</a>
+      <a href="journal.html">Journal</a>
+      <a href="information.html">Information</a>
+      <a href="about.html">About</a>
+    </div>
+  </nav>
+
+  <div class="hero-content">
+
+    <p class="eyebrow">05 — TRADING JOURNAL</p>
+
+    <h1>Record.<br><span>Review. Improve.</span></h1>
+
+    <p class="lead">
+      Keep track of your trades and learn from every setup,
+      whether it wins or loses.
+    </p>
+
+  </div>
+
+</header>
+
+
+<main>
+
+<section class="section">
+
+  <div class="section-head">
+    <p class="eyebrow">NEW JOURNAL ENTRY</p>
+    <h2>Record your trade</h2>
+
+    <p>
+      Write down your plan before or after the trade.
+      The goal is to improve your process over time.
+    </p>
+  </div>
+
+
+  <div class="journal-form">
+
+    <input id="pair" placeholder="Pair (e.g. GBPJPY)">
+
+    <select id="direction">
+      <option>BUY</option>
+      <option>SELL</option>
+    </select>
+
+    <input id="entry" placeholder="Entry price">
+
+    <input id="stop" placeholder="Stop loss">
+
+    <input id="target" placeholder="Target">
+
+    <textarea id="lesson" placeholder="What did you learn?"></textarea>
+
+    <button class="btn primary" onclick="saveTrade()">
+      Save Journal Entry
+    </button>
+
+    <p id="saved"></p>
+
+  </div>
+
+</section>
+
+
+<section class="dark-section">
+
+  <div class="section-head">
+    <p class="eyebrow">REMEMBER</p>
+
+    <h2>Every trade can teach you something.</h2>
+
+    <p>
+      Don't only record winning trades. Losses can also help you
+      identify mistakes, improve your patience and refine your plan.
+    </p>
+  </div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+  <strong>TradeFlow Academy</strong>
+
+  <p>Learn • Plan • Manage Risk • Review</p>
+
+  <small>
+    Educational project. Not financial advice.
+    Trading involves substantial risk.
+  </small>
+
+</footer>
+
+
+<script>
+
+function saveTrade() {
+
+  const pair =
+    document.getElementById('pair').value || 'Unnamed trade';
+
+  const lesson =
+    document.getElementById('lesson').value || 'No lesson recorded.';
+
+  localStorage.setItem('lastTrade', JSON.stringify({
+
+    pair: pair,
+
+    direction:
+      document.getElementById('direction').value,
+
+    entry:
+      document.getElementById('entry').value,
+
+    stop:
+      document.getElementById('stop').value,
+
+    target:
+      document.getElementById('target').value,
+
+    lesson: lesson
+
+  }));
+
+  document.getElementById('saved').textContent =
+    '✓ Journal entry saved on this device.';
+
+}
+
+</script>
+
+</body>
+</html>
