@@ -1,0 +1,308 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f5f5f3;
+  color: #171717;
+  line-height: 1.6;
+}
+
+.hero {
+  background: #111;
+  color: white;
+  min-height: 520px;
+}
+
+nav {
+  width: 90%;
+  max-width: 1150px;
+  margin: auto;
+  padding: 25px 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.logo span {
+  font-weight: normal;
+}
+
+.navlinks {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.navlinks a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.navlinks a:hover {
+  opacity: 0.7;
+}
+
+.hero-content {
+  width: 90%;
+  max-width: 1150px;
+  margin: auto;
+  padding: 100px 0;
+}
+
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: 2px;
+  font-weight: bold;
+  margin-bottom: 18px;
+  opacity: 0.7;
+}
+
+h1 {
+  font-size: clamp(42px, 7vw, 80px);
+  line-height: 1;
+  margin-bottom: 25px;
+}
+
+h1 span {
+  color: #aaa;
+}
+
+.lead {
+  max-width: 650px;
+  font-size: 19px;
+  color: #ccc;
+}
+
+.section {
+  width: 90%;
+  max-width: 1150px;
+  margin: auto;
+  padding: 90px 0;
+}
+
+.dark-section {
+  background: #171717;
+  color: white;
+  padding: 90px 5%;
+}
+
+.section-head {
+  max-width: 800px;
+  margin-bottom: 45px;
+}
+
+.section-head h2 {
+  font-size: clamp(30px, 5vw, 55px);
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+.section-head p {
+  color: #666;
+  max-width: 700px;
+}
+
+.dark-section .section-head p {
+  color: #bbb;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1150px;
+  margin: auto;
+}
+
+.card {
+  background: white;
+  padding: 35px;
+  border: 1px solid #ddd;
+}
+
+.card h3 {
+  margin: 15px 0;
+  font-size: 22px;
+}
+
+.card p {
+  color: #666;
+}
+
+.tf {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.strategy-list {
+  max-width: 900px;
+  margin: auto;
+}
+
+.step {
+  display: flex;
+  gap: 30px;
+  padding: 30px 0;
+  border-bottom: 1px solid #444;
+}
+
+.step > span {
+  font-weight: bold;
+  font-size: 20px;
+  min-width: 60px;
+}
+
+.step h3 {
+  margin-bottom: 8px;
+}
+
+.step p {
+  color: #bbb;
+}
+
+.risk-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 900px;
+}
+
+.risk-box {
+  padding: 35px;
+  border: 1px solid #ddd;
+  background: white;
+}
+
+.risk-box strong {
+  font-size: 40px;
+}
+
+.risk-box h3 {
+  margin: 10px 0;
+}
+
+.risk-box p {
+  color: #666;
+}
+
+.warning {
+  max-width: 850px;
+  padding: 25px;
+  border-left: 4px solid #777;
+  background: #222;
+  color: #ddd;
+}
+
+footer {
+  background: #0d0d0d;
+  color: white;
+  text-align: center;
+  padding: 45px 20px;
+}
+
+footer p {
+  margin: 10px 0;
+  color: #aaa;
+}
+
+footer small {
+  color: #777;
+}
+
+.journal-form {
+  max-width: 700px;
+  display: grid;
+  gap: 15px;
+}
+
+.journal-form input,
+.journal-form select,
+.journal-form textarea {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ccc;
+  background: white;
+  font-family: inherit;
+  font-size: 15px;
+}
+
+.journal-form textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.btn {
+  display: inline-block;
+  padding: 14px 25px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.primary {
+  background: #111;
+  color: white;
+}
+
+@media (max-width: 700px) {
+
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navlinks {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .hero {
+    min-height: 500px;
+  }
+
+  .hero-content {
+    padding: 70px 0;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .risk-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section {
+    padding: 65px 0;
+  }
+
+  .dark-section {
+    padding: 65px 5%;
+  }
+
+  h1 {
+    font-size: 48px;
+  }
+}
