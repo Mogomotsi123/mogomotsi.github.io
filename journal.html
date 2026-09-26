@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TradeFlow Academy | Trading Journal</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7f9;
+            color: #172033;
+        }
+
+        /* HEADER */
+        header {
+            background: #061321;
+            border-bottom: 1px solid #17304a;
+            padding: 18px 20px;
+        }
+
+        .header-container {
+            max-width: 1100px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .brand {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .brand span {
+            color: #20df8a;
+        }
+
+        .tagline {
+            font-size: 10px;
+            color: #20df8a;
+            letter-spacing: 1.5px;
+            margin-top: 4px;
+        }
+
+        nav {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        nav a {
+            color: #dce7ef;
+            text-decoration: none;
+            padding: 9px 12px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background: #20df8a;
+            color: #061321;
+            font-weight: bold;
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, #061321, #102b40);
+            color: white;
+            padding: 55px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            margin: 0 0 12px;
+            font-size: 38px;
+        }
+
+        .hero h1 span {
+            color: #20df8a;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: auto;
+            line-height: 1.7;
+            color: #dce7ef;
+        }
+
+        /* MAIN */
+        main {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section-title h2 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .section-title p {
+            color: #667085;
+        }
+
+        /* JOURNAL CARD */
+        .journal-card {
+            background: white;
+            padding: 28px;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+            margin-bottom: 30px;
+        }
+
+        .journal-card h3 {
+            margin-top: 0;
+            color: #061321;
+            font-size: 22px;
+        }
+
+        .journal-card h3 span {
+            color: #20df8a;
+        }
+
+        /* FORM */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #172033;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #d6dde5;
+            border-radius: 10px;
+            font-size: 15px;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #fbfcfd;
+            color: #172033;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #20df8a;
+            box-shadow: 0 0 0 3px rgba(32, 223, 138, 0.12);
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* BUTTON */
+        .button-area {
+            margin-top: 25px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            border: none;
+            padding: 13px 22px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .save-btn {
+            background: #20df8a;
+            color: #061321;
+        }
+
+        .clear-btn {
+            background: #e9eef2;
+            color: #172033;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        /* NOTE BOX */
+        .tip-box {
+            background: #061321;
+            color: white;
+            padding: 25px;
+            border-radius: 16px;
+            margin-top: 30px;
+        }
+
+        .tip-box h3 {
+            margin-top: 0;
+            color: #20df8a;
+        }
+
+        .tip-box p {
+            color: #dce7ef;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* JOURNAL ENTRIES */
+        #savedEntries {
+            margin-top: 25px;
+        }
+
+        .entry {
+            background: #f8fafb;
+            border-left: 5px solid #20df8a;
+            padding: 18px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .entry h4 {
+            margin: 0 0 10px;
+            color: #061321;
+        }
+
+        .entry p {
+            margin: 6px 0;
+            line-height: 1.5;
+        }
+
+        .entry strong {
+            color: #061321;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #061321;
+            color: #dce7ef;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+        }
+
+        footer .footer-brand {
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        footer .footer-brand span {
+            color: #20df8a;
+        }
+
+        footer p {
+            font-size: 14px;
+            margin: 8px 0;
+        }
+
+        footer a {
+            color: #20df8a;
+            text-decoration: none;
+        }
+
+        /* MOBILE */
+        @media (max-width: 700px) {
+
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav {
+                justify-content: flex-start;
+            }
+
+            .hero h1 {
+                font-size: 30px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .journal-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="header-container">
+
+        <div>
+            <a href="index.html" class="brand">
+                TradeFlow<span>Academy</span>
+            </a>
+
+            <div class="tagline">
+                FREE FOREX LEARNING
+            </div>
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="journal.html" class="active">Journal</a>
+            <a href="information.html">Information</a>
+            <a href="examples.html">Examples</a>
+            <a href="about.html">About</a>
+        </nav>
+
+    </div>
+</header>
+
+
+<!-- HERO -->
+<section class="hero">
+
+    <h1>
+        Trading <span>Journal</span>
+    </h1>
+
+    <p>
+        Record your trades, track your progress and learn from every
+        trading decision you make.
+    </p>
+
+</section>
+
+
+<!-- MAIN -->
+<main>
+
+    <div class="section-title">
+
+        <h2>My Trading Journal</h2>
+
+        <p>
+            Fill in the spaces below after each trade.
+        </p>
+
+    </div>
+
+
+    <!-- JOURNAL FORM -->
+    <div class="journal-card">
+
+        <h3>
+            📝 <span>Record Your Trade</span>
+        </h3>
+
+        <div class="form-grid">
+
+            <div class="form-group">
+                <label for="date">Date</label>
+                <input type="date" id="date">
+            </div>
+
+
+            <div class="form-group">
+                <label for="pair">Currency Pair</label>
+
+                <input
+                    type="text"
+                    id="pair"
+                    placeholder="Example: GBPJPY"
+                >
+            </div>
+
+
+            <div class="form-group">
+                <label for="direction">Trade Direction</label>
+
+                <select id="direction">
+
+                    <option value="">
+                        Select
+                    </option>
+
+                    <option value="Buy">
+                        Buy
+                    </option>
+
+                    <option value="Sell">
+                        Sell
+                    </option>
+
+                </select>
+            </div>
+
+
+            <div class="form-group">
+                <label for="timeframe">Timeframe</label>
+
+                <input
+                    type="text"
+                    id="timeframe"
+                    placeholder="Example: H4 / M15"
+                >
+            </div>
+
+
+            <div class="form-group">
+                <label for="entry">Entry Price</label>
+
+                <input
+                    type="text"
+                    id="entry"
+                    placeholder="Example: 198.500"
+                >
+            </div>
+
+
+            <div class="form-group">
+                <label for="stoploss">Stop Loss</label>
+
+                <input
+                    type="text"
+                    id="stoploss"
+                    placeholder="Example: 197.900"
+                >
+            </div>
+
+
+            <div class="form-group">
+                <label for="takeprofit">Take Profit</label>
+
+                <input
+                    type="text"
+                    id="takeprofit"
+                    placeholder="Example: 199.500"
+                >
+            </div>
+
+
+            <div class="form-group">
+                <label for="result">Trade Result</label>
+
+                <select id="result">
+
+                    <option value="">
+                        Select
+                    </option>
+
+                    <option value="Win">
+                        Win
+                    </option>
+
+                    <option value="Loss">
+                        Loss
+                    </option>
+
+                    <option value="Break-even">
+                        Break-even
+                    </option>
+
+                </select>
+            </div>
+
+
+            <div class="form-group full">
+
+                <label for="setup">
+                    Trading Setup / Reason for Entry
+                </label>
+
+                <textarea
+                    id="setup"
+                    placeholder="Why did you enter this trade? Example: Break of structure, support/resistance, trend continuation..."
+                ></textarea>
+
+            </div>
+
+
+            <div class="form-group full">
+
+                <label for="psychology">
+                    Trading Psychology
+                </label>
+
+                <textarea
+                    id="psychology"
+                    placeholder="How were you feeling before and during the trade? Calm, nervous, confident, fearful..."
+                ></textarea>
+
+            </div>
+
+
+            <div class="form-group full">
+
+                <label for="lesson">
+                    What Did I Learn?
+                </label>
+
+                <textarea
+                    id="lesson"
+                    placeholder="What did this trade teach you?"
+                ></textarea>
+
+            </div>
+
+
+            <div class="form-group full">
+
+                <label for="notes">
+                    Additional Notes
+                </label>
+
+                <textarea
+                    id="notes"
+                    placeholder="Write anything else you want to remember about this trade..."
+                ></textarea>
+
+            </div>
+
+        </div>
+
+
+        <div class="button-area">
+
+            <button
+                class="save-btn"
+                onclick="saveTrade()"
+            >
+                💾 Save Trade
+            </button>
+
+            <button
+                class="clear-btn"
+                onclick="clearForm()"
+            >
+                Clear
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- SAVED TRADES -->
+    <div class="journal-card">
+
+        <h3>
+            📊 <span>My Saved Trades</span>
+        </h3>
+
+        <p>
+            Your saved trades will appear here on this device.
+        </p>
+
+        <div id="savedEntries"></div>
+
+    </div>
+
+
+    <!-- TIP -->
+    <div class="tip-box">
+
+        <h3>💡 TradeFlow Tip</h3>
+
+        <p>
+            Don't only record your winning trades. Your losing trades
+            can teach you some of the most important lessons. Be honest
+            with your journal and look for patterns in your decisions.
+        </p>
+
+    </div>
+
+</main>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <div class="footer-brand">
+        TradeFlow<span>Academy</span>
+    </div>
+
+    <p>
+        Free Forex Learning • Chart Analysis • Trading Education
+    </p>
+
+    <p>
+        <a href="index.html">Home</a> •
+        <a href="journal.html">Journal</a> •
+        <a href="information.html">Information</a> •
+        <a href="examples.html">Examples</a> •
+        <a href="about.html">About</a>
+    </p>
+
+    <p>
+        Educational purposes only. Not financial advice.
+    </p>
+
+</footer>
+
+
+<script>
+
+    function saveTrade() {
+
+        const date = document.getElementById("date").value;
+        const pair = document.getElementById("pair").value;
+        const direction = document.getElementById("direction").value;
+        const timeframe = document.getElementById("timeframe").value;
+        const entry = document.getElementById("entry").value;
+        const stoploss = document.getElementById("stoploss").value;
+        const takeprofit = document.getElementById("takeprofit").value;
+        const result = document.getElementById("result").value;
+        const setup = document.getElementById("setup").value;
+        const psychology = document.getElementById("psychology").value;
+        const lesson = document.getElementById("lesson").value;
+        const notes = document.getElementById("notes").value;
+
+        if (!date || !pair || !direction) {
+
+            alert("Please enter at least the date, currency pair and trade direction.");
+
+            return;
+        }
+
+        const trade = {
+
+            date: date,
+            pair: pair,
+            direction: direction,
+            timeframe: timeframe,
+            entry: entry,
+            stoploss: stoploss,
+            takeprofit: takeprofit,
+            result: result,
+            setup: setup,
+            psychology: psychology,
+            lesson: lesson,
+            notes: notes
+
+        };
+
+        let trades = JSON.parse(
+            localStorage.getItem("tradeflowTrades")
+        ) || [];
+
+        trades.push(trade);
+
+        localStorage.setItem(
+            "tradeflowTrades",
+            JSON.stringify(trades)
+        );
+
+        alert("Trade saved successfully! 📈");
+
+        clearForm();
+
+        displayTrades();
+
+    }
+
+
+    function displayTrades() {
+
+        const container =
+            document.getElementById("savedEntries");
+
+        let trades = JSON.parse(
+            localStorage.getItem("tradeflowTrades")
+        ) || [];
+
+        container.innerHTML = "";
+
+        if (trades.length === 0) {
+
+            container.innerHTML =
+                "<p>No trades recorded yet. Your trades will appear here.</p>";
+
+            return;
+        }
+
+
+        trades.slice().reverse().forEach(function(trade) {
+
+            const entry = document.createElement("div");
+
+            entry.className = "entry";
+
+            entry.innerHTML = `
+
+                <h4>
+                    ${trade.date} — ${trade.pair} — ${trade.direction}
+                </h4>
+
+                <p>
+                    <strong>Timeframe:</strong>
+                    ${trade.timeframe || "Not recorded"}
+                </p>
+
+                <p>
+                    <strong>Entry:</strong>
+                    ${trade.entry || "Not recorded"}
+                </p>
+
+                <p>
+                    <strong>Stop Loss:</strong>
+                    ${trade.stoploss || "Not recorded"}
+                </p>
+
+                <p>
+                    <strong>Take Profit:</strong>
+                    ${trade.takeprofit || "Not recorded"}
+                </p>
+
+                <p>
+                    <strong>Result:</strong>
+                    ${trade.result || "Not recorded"}
+                </p>
+
+                <p>
+                    <strong>Setup:</strong>
+                    ${trade.setup || "Not recorded"}
+                </p>
+
+                <p>
+                    <strong>Psychology:</strong>
+                    ${trade.psychology || "Not recorded"}
+                </p>
+
+                <p>
+                    <strong>Lesson:</strong>
+                    ${trade.lesson || "Not recorded"}
+                </p>
+
+                <p>
+                    <strong>Notes:</strong>
+                    ${trade.notes || "Not recorded"}
+                </p>
+
+            `;
+
+            container.appendChild(entry);
+
+        });
+
+    }
+
+
+    function clearForm() {
+
+        document.getElementById("date").value = "";
+        document.getElementById("pair").value = "";
+        document.getElementById("direction").value = "";
+        document.getElementById("timeframe").value = "";
+        document.getElementById("entry").value = "";
+        document.getElementById("stoploss").value = "";
+        document.getElementById("takeprofit").value = "";
+        document.getElementById("result").value = "";
+        document.getElementById("setup").value = "";
+        document.getElementById("psychology").value = "";
+        document.getElementById("lesson").value = "";
+        document.getElementById("notes").value = "";
+
+    }
+
+
+    displayTrades();
+
+</script>
+
+</body>
+</html>
